@@ -27,6 +27,11 @@ export interface AddUser {
   confirmPassword: string;
 }
 
+export interface LoginUser {
+  email: string;
+  password: string;
+}
+
 export interface Category {
   id: number;
   image: string;

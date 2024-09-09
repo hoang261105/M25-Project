@@ -48,7 +48,7 @@ export default function AdminUser() {
     password: "",
     confirmPassword: "",
   });
-  const userState = useSelector((state: any) => state.users.users);
+  const userState = useSelector((state: any) => state.users.user);
   const dispatch = useDispatch();
   console.log(66666, userState);
 
@@ -134,7 +134,6 @@ export default function AdminUser() {
 
     if (valid) {
       const newUser = {
-        id: userState.length + 1,
         user_id: Math.ceil(Math.random() * 10000),
         username: inputValue.username,
         fullName: inputValue.fullName,

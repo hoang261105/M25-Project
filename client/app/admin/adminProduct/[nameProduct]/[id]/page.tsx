@@ -38,7 +38,7 @@ export default function AdminProduct() {
   });
   const productState = useSelector((state: any) => state.products.product);
   const dispatch = useDispatch();
-  console.log(productState);
+  console.log(2222222, productState);
   const { id } = useParams();
   const { nameProduct } = useParams();
 
@@ -144,7 +144,7 @@ export default function AdminProduct() {
   // Hàm xóa sản phẩm
   const handleDelete = async (id: number) => {
     await dispatch(deleteProduct(id));
-    dispatch(getAllProduct(id));
+    // dispatch(getAllProduct());
     setProductDelete(null);
   };
 

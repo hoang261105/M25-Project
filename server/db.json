@@ -293,18 +293,32 @@
       "phone": "",
       "created_at": "08-09-2024 18:23:15",
       "updated_at": ""
+    },
+    {
+      "user_id": 936,
+      "username": "duong2005",
+      "fullName": "Nguyễn Dinh Duong",
+      "email": "duong2005@gmail.com",
+      "password": "duong2005",
+      "status": true,
+      "role": false,
+      "avatar": "https://scontent.fhan18-1.fna.fbcdn.net/v/t1.30497-1/453178253_471506465671661_2781666950760530985_n.png?stp=dst-png_s200x200&_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_ohc=VVXDQ2ftWTsQ7kNvgEsTadt&_nc_ht=scontent.fhan18-1.fna&_nc_gid=AXp3jmeNWjNNYIBHePTAf1C&oh=00_AYDz8-sNB58RG9XND9CXST7E2TwhmKQT842F2Wnbd1CajQ&oe=6701DFBA",
+      "phone": "",
+      "created_at": "09-09-2024 11:48:02",
+      "updated_at": "",
+      "id": 22
     }
   ],
   "categories": [
     {
-      "category_name": "Máy ảnh - Máy quay phim",
+      "category_name": "Máy ảnh",
       "description": "Chuyên bán camera, máy ảnh",
       "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fmay-anh-canon-eos-850d-kit-ef-s18-55mm-f4-56-is-stm.jpg?alt=media&token=bdaeb0df-0553-4aea-ab12-47e80a804dd4",
       "status": true,
       "id": 4
     },
     {
-      "category_name": "Máy tính - Máy tính bảng",
+      "category_name": "Máy tính",
       "description": "Chuyên bán máy tính cầm tay, máy tính bảng",
       "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2F2102_nhung-dieu-nen-biet-ve-may-tinh-de-ban-van-phong-1.jpg?alt=media&token=fc604b8a-caff-486e-93f5-b0827bb06117",
       "status": true,
@@ -316,31 +330,23 @@
       "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=21d1d62d-4c3c-49cc-b643-95a341451fa9",
       "status": true,
       "id": 6
+    },
+    {
+      "category_name": "Đồng hồ",
+      "description": "Chuyên bán đồng hồ cao cấp",
+      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fm775a-2081241j15489.webp?alt=media&token=20802519-61b9-4b78-bfc6-cfc687642870",
+      "status": true,
+      "id": 7
+    },
+    {
+      "category_name": "Nhà sách online",
+      "description": "Bán các loại sách",
+      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fpngtree-three-books-hand-drawn-illustration-png-image_4501557.jpg?alt=media&token=c37036e2-b36a-4f80-aeb9-28825b3f5875",
+      "status": true,
+      "id": 8
     }
   ],
   "products": [
-    {
-      "product_name": "Xe máy Wave Alpha",
-      "description": "Đời 2022",
-      "price": "10000000",
-      "quantity": "2",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fimages.jfif?alt=media&token=e1734380-fc19-430d-b0dc-1580c3a8065a",
-      "categoryId": "4",
-      "created_at": "08/09/2024 22:13:12",
-      "updated_at": "08/09/2024 22:39:32",
-      "id": 1
-    },
-    {
-      "product_name": "Máy tính DELL",
-      "description": "Chuyên bán camera, máy ảnh",
-      "price": "22000000",
-      "quantity": "12",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2F2102_nhung-dieu-nen-biet-ve-may-tinh-de-ban-van-phong-1.jpg?alt=media&token=5fa38904-5fa0-4bf6-95d9-dd44e76cebc2",
-      "categoryId": "4",
-      "created_at": "08/09/2024 22:40:15",
-      "updated_at": "",
-      "id": 2
-    },
     {
       "product_name": "Cà phê Bạc xỉu",
       "description": "Rẻ vô địch",
@@ -362,6 +368,17 @@
       "created_at": "08/09/2024 23:05:59",
       "updated_at": "",
       "id": 4
+    },
+    {
+      "product_name": "Xe máy Wave Alpha",
+      "description": "Đời 2022",
+      "price": "22000000",
+      "quantity": "13",
+      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fimages.jfif?alt=media&token=a7d7d5b7-44bb-4f76-9ef0-448d3d0ace14",
+      "categoryId": "4",
+      "created_at": "09/09/2024 09:15:09",
+      "updated_at": "09/09/2024 09:15:15",
+      "id": 5
     }
   ]
 }

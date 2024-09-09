@@ -25,9 +25,10 @@ const productReducer = createSlice({
         state.product.push(action.payload);
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
-        state.product = state.product.filter(
-          (product) => product.id !== action.payload.id
-        );
+        // console.log(111111, action.payload);
+        state.product = [
+          ...state.product.filter((product) => product.id !== action.payload),
+        ];
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         state.product = state.product.map((product) =>
