@@ -3,7 +3,10 @@ import {
   addProduct,
   deleteProduct,
   getAllProduct,
+  getAllProductAll,
   searchProduct,
+  sortProduct,
+  sortProductPrice,
   updateProduct,
 } from "@/services/admin/product.service";
 import { createSlice } from "@reduxjs/toolkit";
@@ -36,6 +39,15 @@ const productReducer = createSlice({
         );
       })
       .addCase(searchProduct.fulfilled, (state, action) => {
+        state.product = action.payload;
+      })
+      .addCase(getAllProductAll.fulfilled, (state, action) => {
+        state.product = action.payload;
+      })
+      .addCase(sortProduct.fulfilled, (state, action) => {
+        state.product = action.payload;
+      })
+      .addCase(sortProductPrice.fulfilled, (state, action) => {
         state.product = action.payload;
       });
   },

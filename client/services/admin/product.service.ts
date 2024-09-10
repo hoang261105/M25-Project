@@ -12,6 +12,15 @@ export const getAllProduct: any = createAsyncThunk(
   }
 );
 
+// API lấy tất cả sản phẩm
+export const getAllProductAll: any = createAsyncThunk(
+  "products/getAllProductAll",
+  async () => {
+    const response = await axios.get(`${URL}/products`);
+    return response.data;
+  }
+);
+
 // API thêm sản phẩm
 export const addProduct: any = createAsyncThunk(
   "products/addProduct",
@@ -45,6 +54,28 @@ export const searchProduct: any = createAsyncThunk(
   async ({ search, categoryId }: { search: string; categoryId: number }) => {
     const response = await axios.get(
       `${URL}/products?product_name_like=${search}&categoryId=${categoryId}`
+    );
+    return response.data;
+  }
+);
+
+// API sắp xếp sản phẩm
+export const sortProduct: any = createAsyncThunk(
+  "products/sortProduct",
+  async ({ categoryId, sort }: { categoryId: number; sort: string }) => {
+    const response = await axios.get(
+      `${URL}/products?_sort=product_name&_order=${sort}&categoryId=${categoryId}`
+    );
+    return response.data;
+  }
+);
+
+// API sắp xếp sản phẩm theo giá
+export const sortProductPrice: any = createAsyncThunk(
+  "products/sortProductPrice",
+  async ({ categoryId, sort }: { categoryId: number; sort: string }) => {
+    const response = await axios.get(
+      `${URL}/products?_sort=price&_order=${sort}&categoryId=${categoryId}`
     );
     return response.data;
   }

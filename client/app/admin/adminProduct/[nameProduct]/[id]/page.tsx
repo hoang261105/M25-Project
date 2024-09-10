@@ -108,7 +108,7 @@ export default function AdminProduct() {
         categoryId: id,
         product_name: inputValue.product_name,
         description: inputValue.description,
-        price: inputValue.price,
+        price: Number(inputValue.price),
         quantity: inputValue.quantity,
         created_at: format(new Date(), "dd/MM/yyyy HH:mm:ss"),
         updated_at: "",

@@ -55,13 +55,10 @@ export default function Header() {
 
         <div className="header-right">
           <nav className="header-nav">
-            <a href="" className="nav-item">
+            <a href="/user/home" className="nav-item">
               Trang chủ
             </a>
             <a href="" className="nav-item">
-              Sản phẩm
-            </a>
-            <a href="../Pages/contact.html" className="nav-item">
               Yêu thích
             </a>
           </nav>
@@ -76,7 +73,13 @@ export default function Header() {
                     style={{ borderRadius: "50%" }}
                   />
                 </a>
-                <a href={"/profile"}>{account.fullName}</a>
+                <div className="profile">
+                  <a href={"/profile"}>{account.fullName}</a>
+                  <a href="" style={{ color: "orange" }}>
+                    <i className="fa-solid fa-cart-shopping"></i>{" "}
+                    <span>Giỏ hàng</span>
+                  </a>
+                </div>
                 <button onClick={handleLogOut}>
                   <i className="fa-solid fa-right-from-bracket"></i>
                 </button>

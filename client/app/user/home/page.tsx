@@ -3,20 +3,29 @@ import Header from "@/components/user/Header";
 import React, { useEffect } from "react";
 import "@/styles/home.css";
 import Footer from "@/components/user/Footer";
-import { Carousel } from "react-bootstrap";
+import { Button, Carousel } from "react-bootstrap";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "@/services/admin/category.service";
-import { Category } from "@/interface/admin";
+import { Category, Products } from "@/interface/admin";
 import { useRouter } from "next/navigation";
+import { getAllProductAll } from "@/services/admin/product.service";
+
+const formatter = new Intl.NumberFormat("vi-VN", {
+  style: "currency",
+  currency: "VND",
+});
 
 export default function Home() {
+  const productState = useSelector((state: any) => state.products.product);
+  console.log(productState);
   const categoryState = useSelector((state: any) => state.categories.category);
   console.log(categoryState);
   const router = useRouter();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCategories());
+    dispatch(getAllProductAll());
   }, [dispatch]);
 
   const handleClick = (id: number, category: Category) => {
@@ -160,79 +169,33 @@ export default function Home() {
       </div>
 
       <div className="suggestion-section">
-        <h2 className="section-title">GỢI Ý HÔM NAY</h2>
+        <h2 className="section-title">TẤT CẢ SẢN PHẨM</h2>
         <div className="products-container">
-          <div className="product-card">
-            <img
-              src="https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=21d1d62d-4c3c-49cc-b643-95a341451fa9"
-              alt="Product 1"
-            />
-            <div className="product-info">
-              <span className="discount">-50%</span>
-              <p className="product-title">
-                Khẩu trang N99 6D Kids chuẩn form vừa mặt bé...
-              </p>
-              <p className="product-price">
-                <span className="discounted-price">₫8.000</span>
-              </p>
+          {productState.map((product: Products) => (
+            <div className="product-card">
+              <div className="image">
+                <Image src={product.image} alt="" width={100} height={100} />
+              </div>
+              <div className="product-info">
+                <p className="product-title">{product.product_name}</p>
+                <p className="product-price">
+                  <span className="discounted-price">
+                    {formatter.format(product.price)}
+                  </span>
+                </p>
+              </div>
+              <div className="h-[70px] text-center text-pink-400">
+                <p>{product.description}</p>
+              </div>
+              <div className="h-[30px] text-center text-blue-400">
+                <p>Số lượng: {product.quantity}</p>
+              </div>
+              <div className="flex gap-2">
+                <Button variant="primary">Xem chi tiết</Button>{" "}
+                <Button variant="success">Thêm vào giỏ hàng</Button>
+              </div>
             </div>
-          </div>
-          <div className="product-card">
-            <img src="image2.jpg" alt="Product 2" />
-            <div className="product-info">
-              <span className="discount">-44%</span>
-              <p className="product-title">
-                [Cotton mát] Áo thun tay lỡ PARIS in ngang...
-              </p>
-              <p className="product-price">
-                <span className="discounted-price">₫28.000</span>
-              </p>
-            </div>
-          </div>
-          <div className="product-card">
-            <img src="image3.jpg" alt="Product 3" />
-            <div className="product-info">
-              <span className="discount">-58%</span>
-              <p className="product-title">
-                Dây Sạc Tự Ngắt 3 Đầu 100W Micro USB...
-              </p>
-              <p className="product-price">
-                <span className="discounted-price">₫13.500</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="product-card">
-            <img
-              src="https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=21d1d62d-4c3c-49cc-b643-95a341451fa9"
-              alt="Product 1"
-            />
-            <div className="product-info">
-              <span className="discount">-50%</span>
-              <p className="product-title">
-                Khẩu trang N99 6D Kids chuẩn form vừa mặt bé...
-              </p>
-              <p className="product-price">
-                <span className="discounted-price">₫8.000</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="product-card">
-            <img
-              src="https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=21d1d62d-4c3c-49cc-b643-95a341451fa9"
-              alt="Product 1"
-            />
-            <div className="product-info">
-              <span className="discount">-50%</span>
-              <p className="product-title">
-                Khẩu trang N99 6D Kids chuẩn form vừa mặt bé...
-              </p>
-              <p className="product-price">
-                <span className="discounted-price">₫8.000</span>
-              </p>
-            </div>
-          </div>
+          ))}
           {/* More product cards can be added similarly */}
         </div>
       </div>

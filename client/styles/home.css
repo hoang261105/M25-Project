@@ -1194,8 +1194,8 @@ a {
 
 .products-container {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 .product-card {
@@ -1206,14 +1206,17 @@ a {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.product-card .image {
+  height: 200px;
+}
+
 .product-card img {
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 200px;
 }
 
 .product-info {
-  text-align: left;
+  text-align: center;
 }
 
 .discount {
@@ -1239,4 +1242,13 @@ a {
 .discounted-price {
   color: #ff4d4f;
   font-weight: bold;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile a {
+  text-decoration: none;
 }

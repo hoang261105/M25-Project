@@ -3,9 +3,15 @@
 }
 
 .filter {
-  width: 350px;
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.filter .filter-item {
+  display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -17,7 +23,7 @@
   border: 1px solid darkgray;
 }
 
-.products {
+.product {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -33,7 +39,7 @@
   position: relative;
 }
 
-.favorite-heart {
+.favorite-heart i {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -41,14 +47,18 @@
   cursor: pointer;
 }
 
-.favorite-heart:hover {
-  color: #e74c3c;
+.favorite-heart i:hover {
+  background: #e74c3c;
 }
 
-.product-card img {
+.product-card .image {
   width: 100%;
-  height: 150px;
-  object-fit: contain;
+  height: 200px;
+}
+
+.product-card .image img {
+  width: 100%;
+  height: 200px;
 }
 
 .product-card p {
@@ -61,34 +71,4 @@
   color: #e74c3c;
   font-size: 18px;
   font-weight: bold;
-}
-
-.product-card .discount {
-  color: #888;
-  text-decoration: line-through;
-  margin-left: 5px;
-}
-
-.product-card .sale {
-  color: green;
-  font-size: 14px;
-  margin-left: 5px;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination button {
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-.pagination span {
-  margin: 0 10px;
-  font-size: 16px;
 }
