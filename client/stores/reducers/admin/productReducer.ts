@@ -4,10 +4,12 @@ import {
   deleteProduct,
   getAllProduct,
   getAllProductAll,
+  getProductById,
   searchProduct,
   sortProduct,
   sortProductPrice,
   updateProduct,
+  updateProductImages,
 } from "@/services/admin/product.service";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -17,6 +19,7 @@ const productReducer = createSlice({
   name: "products",
   initialState: {
     product: productState,
+    productDetail: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -38,6 +41,7 @@ const productReducer = createSlice({
           product.id === action.payload.id ? action.payload : product
         );
       })
+
       .addCase(searchProduct.fulfilled, (state, action) => {
         state.product = action.payload;
       })
@@ -49,6 +53,16 @@ const productReducer = createSlice({
       })
       .addCase(sortProductPrice.fulfilled, (state, action) => {
         state.product = action.payload;
+      })
+      .addCase(getProductById.fulfilled, (state, action) => {
+        state.productDetail = action.payload;
+      })
+      .addCase(updateProductImages.fulfilled, (state, action) => {
+        state.product = state.product.map((product) =>
+          product.id === action.payload.id
+            ? { ...product, image: action.payload.image }
+            : product
+        );
       });
   },
 });

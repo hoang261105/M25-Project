@@ -1,3 +1,4 @@
+import { Products, UpdateProduct } from "@/interface/admin";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -43,7 +44,10 @@ export const deleteProduct: any = createAsyncThunk(
 export const updateProduct: any = createAsyncThunk(
   "products/updateProduct",
   async (product: any) => {
-    const response = await axios.put(`${URL}/products/${product.id}`, product);
+    const { id, ...productData } = product; // Extract id from product
+    const response = await axios.put(`${URL}/products/${id}`, productData);
+    console.log("Updated product:", productData);
+
     return response.data;
   }
 );
@@ -77,6 +81,27 @@ export const sortProductPrice: any = createAsyncThunk(
     const response = await axios.get(
       `${URL}/products?_sort=price&_order=${sort}&categoryId=${categoryId}`
     );
+    return response.data;
+  }
+);
+
+// API lấy sản phẩm theo id
+export const getProductById: any = createAsyncThunk(
+  "products/getProductById",
+  async (id: number) => {
+    const response = await axios.get(`${URL}/products/${id}`);
+    return response.data;
+  }
+);
+
+// API cập nhật hình ảnh liên quan
+export const updateProductImages = createAsyncThunk(
+  "products/updateProductImages",
+  async ({ id, relatedImages }: { id: string; relatedImages: string[] }) => {
+    // PATCH request to update only related images
+    const response = await axios.patch(`${URL}/products/${id}`, {
+      image: { related: relatedImages },
+    });
     return response.data;
   }
 );

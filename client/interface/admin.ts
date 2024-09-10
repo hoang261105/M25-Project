@@ -53,7 +53,10 @@ export interface Products {
   description: string;
   price: number;
   quantity: number;
-  image: string;
+  image: {
+    origin: string;
+    related: string[];
+  };
   created_at: string;
   updated_at: string;
 }
@@ -62,6 +65,36 @@ export interface AddProduct {
   product_name: string;
   description: string;
   price: number;
-  quantity: string;
+  quantity: number;
   image: string;
+}
+
+export interface UpdateProduct {
+  product_name: string;
+  description: string;
+  price: number;
+  quantity: number;
+  image: {
+    origin: string;
+    related: string[];
+  };
+}
+
+export interface Carts {
+  id: number;
+  idUSer: number;
+  product: {
+    id: number;
+    categoryId: number;
+    product_name: string;
+    description: string;
+    price: number;
+    quantity: number;
+    image: {
+      origin: string;
+      related: string[];
+    };
+    created_at: string;
+    updated_at: string;
+  };
 }

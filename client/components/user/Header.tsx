@@ -8,6 +8,9 @@ export default function Header() {
     JSON.parse(localStorage.getItem("user") || "null")
   );
   const router = useRouter();
+  const handleClick = (id: number) => {
+    router.push(`/user/carts/${id}`);
+  };
   const handleLogOut = () => {
     Swal.fire({
       title: "Bạn có muốn đăng xuất không?",
@@ -75,11 +78,17 @@ export default function Header() {
                 </a>
                 <div className="profile">
                   <a href={"/profile"}>{account.fullName}</a>
-                  <a href="" style={{ color: "orange" }}>
-                    <i className="fa-solid fa-cart-shopping"></i>{" "}
-                    <span>Giỏ hàng</span>
-                  </a>
                 </div>
+                <button
+                  className="cart"
+                  onClick={() => handleClick(account.id)}
+                >
+                  <i
+                    className="fa-solid fa-cart-shopping"
+                    style={{ fontSize: 15 }}
+                  ></i>{" "}
+                  <div className="notification">0</div>
+                </button>
                 <button onClick={handleLogOut}>
                   <i className="fa-solid fa-right-from-bracket"></i>
                 </button>

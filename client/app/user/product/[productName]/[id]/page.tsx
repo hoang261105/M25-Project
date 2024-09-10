@@ -160,7 +160,7 @@ export default function page() {
                 </span>
                 <div className="image">
                   <Image
-                    src={product.image}
+                    src={product.image.origin}
                     alt={product.product_name}
                     width={300}
                     height={200}

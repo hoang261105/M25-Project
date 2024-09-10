@@ -11,7 +11,7 @@ import {
   searchProduct,
   updateProduct,
 } from "@/services/admin/product.service";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { AddProduct, Products } from "@/interface/admin";
 import { format } from "date-fns";
@@ -19,14 +19,15 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/config/firebase";
 
 export default function AdminProduct() {
-  const [image, setImage] = useState<string>("");
+  const [images, setImage] = useState<string>("");
+  const router = useRouter();
   const [productDelete, setProductDelete] = useState<Products | null>(null);
   const [productEdit, setProductEdit] = useState<Products | null>(null);
   const [inputValue, setInputValue] = useState<AddProduct>({
     product_name: "",
     description: "",
     price: 0,
-    quantity: "",
+    quantity: 0,
     image: "",
   });
 
@@ -41,6 +42,11 @@ export default function AdminProduct() {
   console.log(2222222, productState);
   const { id } = useParams();
   const { nameProduct } = useParams();
+
+  const handleClick = (id: number) => {
+    console.log(id);
+    router.push(`/admin/adminProductRelated/${id}`);
+  };
 
   useEffect(() => {
     if (id) {
@@ -64,7 +70,7 @@ export default function AdminProduct() {
       product_name: "",
       description: "",
       price: 0,
-      quantity: "",
+      quantity: 0,
       image: "",
     });
   };
@@ -112,6 +118,10 @@ export default function AdminProduct() {
         quantity: inputValue.quantity,
         created_at: format(new Date(), "dd/MM/yyyy HH:mm:ss"),
         updated_at: "",
+        image: {
+          origin: images,
+          related: [],
+        },
       };
       await dispatch(addProduct(newProduct));
       reset();
@@ -132,7 +142,7 @@ export default function AdminProduct() {
     const imageRef = ref(storage, `images/${image.name}`);
     uploadBytes(imageRef, image).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setImage(image);
+        setImage(url);
         setInputValue({
           ...inputValue,
           image: url,
@@ -448,14 +458,18 @@ export default function AdminProduct() {
                   <tr key={product.id}>
                     <td>{index + 1}</td>
                     <td>
-                      <Image
-                        src={product.image}
-                        alt=""
+                      <img
+                        src={product.image.origin}
+                        alt="gg"
                         width={70}
                         height={70}
                       />
                     </td>
-                    <td>{product.product_name}</td>
+                    <td>
+                      <button onClick={() => handleClick(product.id)}>
+                        {product.product_name}
+                      </button>
+                    </td>
                     <td>{product.description}</td>
                     <td>{product.price}</td>
                     <td>{product.quantity}</td>

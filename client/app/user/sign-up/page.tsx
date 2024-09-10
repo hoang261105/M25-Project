@@ -103,6 +103,7 @@ export default function page() {
         fullName: inputValue.fullName,
         email: inputValue.email,
         password: inputValue.password,
+        cart: [],
         status: true,
         role: false,
         avatar:

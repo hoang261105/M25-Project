@@ -341,125 +341,116 @@
   ],
   "products": [
     {
-      "product_name": "Cà phê Bạc xỉu",
-      "description": "Rẻ vô địch",
-      "price": 60000,
-      "quantity": "3",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=121e12d7-d5f0-4ab5-9b68-38af438eb589",
-      "categoryId": "6",
-      "created_at": "08/09/2024 23:05:05",
-      "updated_at": "",
-      "id": 3
-    },
-    {
-      "product_name": "Netscafe",
-      "description": "Mua để nhận quà",
-      "price": 140000,
-      "quantity": "23",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fnescafe-3in1-vi-nguyen-ban-hop-20goi.jpg?alt=media&token=e6b1194a-dbb9-4c1b-99d4-5e1872fcd67e",
-      "categoryId": "6",
-      "created_at": "08/09/2024 23:05:59",
-      "updated_at": "",
-      "id": 4
-    },
-    {
-      "product_name": "Cà phê sữa",
-      "description": "Ngon khó cưỡng",
-      "price": 20000,
-      "quantity": "19",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fcafe-sua-1280x1000-be0b.jpg?alt=media&token=e6fce05a-0fdb-401c-8b45-dc7aee01c9d1",
-      "categoryId": "6",
-      "created_at": "09/09/2024 23:52:33",
-      "updated_at": "",
-      "id": 6
-    },
-    {
-      "product_name": "Cà phê đen",
-      "description": "Ngon, bổ, rẻ",
-      "price": 15000,
-      "quantity": "20",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fphin-den-da-1698982738181.webp?alt=media&token=312ab21c-8f11-4b06-8d6b-38397e506384",
-      "categoryId": "6",
-      "created_at": "09/09/2024 23:56:44",
-      "updated_at": "",
-      "id": 7
-    },
-    {
-      "product_name": "Cà phê phố",
-      "description": "Cà Phê Phố Đen Đá Hộp 160G (10 Gói x 16G)",
-      "price": 40000,
-      "quantity": "20",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2F8936024243975.jpg.webp?alt=media&token=8250104c-8033-4ac3-84e2-c22ede6ab26c",
-      "categoryId": "6",
-      "created_at": "09/09/2024 23:58:29",
-      "updated_at": "",
-      "id": 8
-    },
-    {
-      "product_name": "Cà phê Wake up 247",
-      "description": "Nước tăng lực vị cà phê Wakeup 247 chai 330ml",
-      "price": 12000,
-      "quantity": "14",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2F0fab6ae6a330f137ff1e142af59d8fbb.jfif?alt=media&token=c470f051-11db-49e2-860c-d3981cd2462f",
-      "categoryId": "6",
-      "created_at": "10/09/2024 00:01:22",
-      "updated_at": "",
-      "id": 9
-    },
-    {
       "product_name": "Cà phê Laura",
       "description": "Cà phê Đông trùng Hạ thảo (Hộp 10 gói) Laura Coffee",
       "price": 75000,
-      "quantity": "18",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fz4745266129303_475ddb7bcf52f6e34b1739bec8ede878_dbd6bc44303942e1a065dbab7f718e8a_master.webp?alt=media&token=9c5e9b34-cc39-46b3-8c90-be6c2fc42f0b",
+      "quantity": "32",
+      "image": {
+        "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fz4745266129303_475ddb7bcf52f6e34b1739bec8ede878_dbd6bc44303942e1a065dbab7f718e8a_master.webp?alt=media&token=53d89346-8313-4bde-988d-4e3f7f36d08d",
+        "related": []
+      },
       "categoryId": "6",
-      "created_at": "10/09/2024 09:05:15",
+      "created_at": "10/09/2024 20:31:55",
       "updated_at": "",
-      "id": 10
-    },
-    {
-      "product_name": "Nghĩ giàu làm giàu",
-      "description": "Nghĩ Giàu & Làm Giàu (Tái Bản 2020)",
-      "price": 82500,
-      "quantity": "40",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fnghigiaulamgiau_110k-01_bia-1.webp?alt=media&token=ed0aaf9e-07c8-48a7-b260-43d6e2e63959",
-      "categoryId": "8",
-      "created_at": "10/09/2024 09:10:44",
-      "updated_at": "",
-      "id": 11
+      "id": 2
     },
     {
       "product_name": "Biến mọi thứ thành tiền",
       "description": "Biến Mọi Thứ Thành Tiền",
       "price": 151200,
-      "quantity": "124",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fanh_dai_dien_bien_moi_thu_thanh_tien_ec855091d002462f9e4586c7e0fb8e22.webp?alt=media&token=9e6d13e8-3c2e-4c40-9ca0-87aab32c44a9",
+      "quantity": "13",
+      "image": {
+        "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fanh_dai_dien_bien_moi_thu_thanh_tien_ec855091d002462f9e4586c7e0fb8e22.webp?alt=media&token=e21a0c85-a6ee-471b-9e0a-df8a31beace9",
+        "related": []
+      },
       "categoryId": "8",
-      "created_at": "10/09/2024 09:52:54",
+      "created_at": "10/09/2024 23:07:29",
+      "updated_at": "10/09/2024 23:11:38",
+      "id": 3
+    },
+    {
+      "product_name": "Cà phê Bạc xỉu",
+      "description": "Cà phê đậm chất Tây Nguyên",
+      "price": 12000,
+      "quantity": "20",
+      "image": {
+        "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=978283c9-dbb8-4024-8db3-d7f24550686a",
+        "related": []
+      },
+      "categoryId": "6",
+      "created_at": "11/09/2024 00:22:28",
       "updated_at": "",
-      "id": 12
+      "id": 4
     },
     {
       "product_name": "Máy tính Asus Vivobook",
-      "description": "Laptop Asus Vivobook 15 i3-1215U (X1504ZA-NJ582W) Giá Rẻ",
-      "price": 9900000,
-      "quantity": "12",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2F10056805-laptop-asus-vivobook15-i3-1215u-x1504za0nj582w-1.jpg?alt=media&token=a92f9765-3484-48e9-9959-2d804ca80b70",
+      "description": "Máy tính Asus Vivobook bản 16inch",
+      "price": 15000000,
+      "quantity": "3",
+      "image": {
+        "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2F10056805-laptop-asus-vivobook15-i3-1215u-x1504za0nj582w-1.jpg?alt=media&token=abe84f31-256f-4b23-b72e-eed41d3526d7",
+        "related": []
+      },
       "categoryId": "5",
-      "created_at": "10/09/2024 10:15:14",
+      "created_at": "11/09/2024 00:23:33",
       "updated_at": "",
-      "id": 13
+      "id": 5
+    }
+  ],
+  "carts": [
+    {
+      "id": 1,
+      "idUser": 22,
+      "product": {
+        "product_name": "Cà phê Laura",
+        "description": "Cà phê Đông trùng Hạ thảo (Hộp 10 gói) Laura Coffee",
+        "price": 75000,
+        "quantity": "32",
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fz4745266129303_475ddb7bcf52f6e34b1739bec8ede878_dbd6bc44303942e1a065dbab7f718e8a_master.webp?alt=media&token=53d89346-8313-4bde-988d-4e3f7f36d08d",
+          "related": []
+        },
+        "categoryId": "6",
+        "created_at": "10/09/2024 20:31:55",
+        "updated_at": "",
+        "id": 2
+      }
     },
     {
-      "product_name": "Macbook Air 2020",
-      "description": "MacBook Air M1 2020 13 inch",
-      "price": 18690000,
-      "quantity": "13",
-      "image": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2F2020_11_12_637407970062806725_mba-2020-gold-dd.jfif?alt=media&token=dc37e664-c320-4edf-976e-1f0bd3282ae6",
-      "categoryId": "5",
-      "created_at": "10/09/2024 10:18:26",
-      "updated_at": "",
-      "id": 14
+      "id": 2,
+      "idUser": 22,
+      "product": {
+        "product_name": "Biến mọi thứ thành tiền",
+        "description": "Biến Mọi Thứ Thành Tiền",
+        "price": 151200,
+        "quantity": "12",
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fanh_dai_dien_bien_moi_thu_thanh_tien_ec855091d002462f9e4586c7e0fb8e22.webp?alt=media&token=e21a0c85-a6ee-471b-9e0a-df8a31beace9",
+          "related": []
+        },
+        "categoryId": "8",
+        "created_at": "10/09/2024 23:07:29",
+        "updated_at": "",
+        "id": 3
+      }
+    },
+    {
+      "id": 3,
+      "idUser": 21,
+      "product": {
+        "product_name": "Cà phê Bạc xỉu",
+        "description": "Cà phê đậm chất Tây Nguyên",
+        "price": 12000,
+        "quantity": "20",
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=978283c9-dbb8-4024-8db3-d7f24550686a",
+          "related": []
+        },
+        "categoryId": "6",
+        "created_at": "11/09/2024 00:22:28",
+        "updated_at": "",
+        "id": 4
+      }
     }
   ]
 }

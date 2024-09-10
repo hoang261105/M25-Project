@@ -174,7 +174,12 @@ export default function Home() {
           {productState.map((product: Products) => (
             <div className="product-card">
               <div className="image">
-                <Image src={product.image} alt="" width={100} height={100} />
+                <Image
+                  src={product.image.origin}
+                  alt=""
+                  width={100}
+                  height={100}
+                />
               </div>
               <div className="product-info">
                 <p className="product-title">{product.product_name}</p>
