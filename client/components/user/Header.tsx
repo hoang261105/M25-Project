@@ -1,13 +1,21 @@
 "use client";
+import { getCartProduct } from "@/services/admin/cart.service";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
 export default function Header() {
-  const [account, setAccount] = useState(
+  const [account, setAccount] = useState<any>(
     JSON.parse(localStorage.getItem("user") || "null")
   );
   const router = useRouter();
+  const cartState = useSelector((state: any) => state.carts.cart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCartProduct());
+  }, []);
   const handleClick = (id: number) => {
     router.push(`/user/carts/${id}`);
   };
@@ -68,7 +76,7 @@ export default function Header() {
           <div id="loginOut" className="flex gap-3 text-lg">
             {account ? (
               <div className="flex items-center gap-4">
-                <a href={"/profile"}>
+                <a href={"/user/profile"}>
                   <img
                     src={account.avatar}
                     alt=""
@@ -77,7 +85,7 @@ export default function Header() {
                   />
                 </a>
                 <div className="profile">
-                  <a href={"/profile"}>{account.fullName}</a>
+                  <a href={"/user/profile"}>{account.fullName}</a>
                 </div>
                 <button
                   className="cart"
@@ -87,7 +95,7 @@ export default function Header() {
                     className="fa-solid fa-cart-shopping"
                     style={{ fontSize: 15 }}
                   ></i>{" "}
-                  <div className="notification">0</div>
+                  <div className="notification">{cartState.length}</div>
                 </button>
                 <button onClick={handleLogOut}>
                   <i className="fa-solid fa-right-from-bracket"></i>

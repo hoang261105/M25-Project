@@ -344,7 +344,7 @@
       "product_name": "Cà phê Laura",
       "description": "Cà phê Đông trùng Hạ thảo (Hộp 10 gói) Laura Coffee",
       "price": 75000,
-      "quantity": "32",
+      "quantity": 32,
       "image": {
         "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fz4745266129303_475ddb7bcf52f6e34b1739bec8ede878_dbd6bc44303942e1a065dbab7f718e8a_master.webp?alt=media&token=53d89346-8313-4bde-988d-4e3f7f36d08d",
         "related": []
@@ -358,7 +358,7 @@
       "product_name": "Biến mọi thứ thành tiền",
       "description": "Biến Mọi Thứ Thành Tiền",
       "price": 151200,
-      "quantity": "13",
+      "quantity": 13,
       "image": {
         "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fanh_dai_dien_bien_moi_thu_thanh_tien_ec855091d002462f9e4586c7e0fb8e22.webp?alt=media&token=e21a0c85-a6ee-471b-9e0a-df8a31beace9",
         "related": []
@@ -372,7 +372,7 @@
       "product_name": "Cà phê Bạc xỉu",
       "description": "Cà phê đậm chất Tây Nguyên",
       "price": 12000,
-      "quantity": "20",
+      "quantity": 20,
       "image": {
         "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=978283c9-dbb8-4024-8db3-d7f24550686a",
         "related": []
@@ -395,62 +395,121 @@
       "created_at": "11/09/2024 00:23:33",
       "updated_at": "",
       "id": 5
+    },
+    {
+      "product_name": "Sách Bách Khoa Lịch Sử Thế Giới",
+      "description": "Cuốn toàn thư Lịch Sử Thế Giới từ Cổ đại đến Hiện đại)",
+      "price": 478500,
+      "quantity": 13,
+      "image": {
+        "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fbach_khoa_lich_su_the_gioi_-_bia_1-1_11a182a3e40b4dd08e145324f21e11d8_bb88fde1c79b4b008fb8eac7e44d6668.webp?alt=media&token=73a3e36c-9fcf-4985-a7a5-afcf78082a52",
+        "related": []
+      },
+      "categoryId": "8",
+      "created_at": "11/09/2024 11:52:43",
+      "updated_at": "11/09/2024 11:53:40",
+      "id": 6
     }
   ],
   "carts": [
     {
-      "id": 1,
-      "idUser": 22,
+      "idUser": "21",
       "product": {
-        "product_name": "Cà phê Laura",
-        "description": "Cà phê Đông trùng Hạ thảo (Hộp 10 gói) Laura Coffee",
-        "price": 75000,
-        "quantity": "32",
-        "image": {
-          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fz4745266129303_475ddb7bcf52f6e34b1739bec8ede878_dbd6bc44303942e1a065dbab7f718e8a_master.webp?alt=media&token=53d89346-8313-4bde-988d-4e3f7f36d08d",
-          "related": []
-        },
-        "categoryId": "6",
-        "created_at": "10/09/2024 20:31:55",
-        "updated_at": "",
-        "id": 2
-      }
-    },
-    {
-      "id": 2,
-      "idUser": 22,
-      "product": {
-        "product_name": "Biến mọi thứ thành tiền",
-        "description": "Biến Mọi Thứ Thành Tiền",
-        "price": 151200,
-        "quantity": "12",
-        "image": {
-          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fanh_dai_dien_bien_moi_thu_thanh_tien_ec855091d002462f9e4586c7e0fb8e22.webp?alt=media&token=e21a0c85-a6ee-471b-9e0a-df8a31beace9",
-          "related": []
-        },
-        "categoryId": "8",
-        "created_at": "10/09/2024 23:07:29",
-        "updated_at": "",
-        "id": 3
-      }
-    },
-    {
-      "id": 3,
-      "idUser": 21,
-      "product": {
+        "id": 4,
         "product_name": "Cà phê Bạc xỉu",
         "description": "Cà phê đậm chất Tây Nguyên",
         "price": 12000,
-        "quantity": "20",
+        "quantity": 2,
         "image": {
           "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=978283c9-dbb8-4024-8db3-d7f24550686a",
           "related": []
         },
-        "categoryId": "6",
-        "created_at": "11/09/2024 00:22:28",
-        "updated_at": "",
-        "id": 4
-      }
+        "categoryId": "6"
+      },
+      "id": 3,
+      "quantity": 12
+    },
+    {
+      "idUser": "21",
+      "product": {
+        "id": 2,
+        "product_name": "Cà phê Laura",
+        "description": "Cà phê Đông trùng Hạ thảo (Hộp 10 gói) Laura Coffee",
+        "price": 75000,
+        "quantity": 1,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fz4745266129303_475ddb7bcf52f6e34b1739bec8ede878_dbd6bc44303942e1a065dbab7f718e8a_master.webp?alt=media&token=53d89346-8313-4bde-988d-4e3f7f36d08d",
+          "related": []
+        },
+        "categoryId": "6"
+      },
+      "id": 4,
+      "quantity": 2
+    },
+    {
+      "idUser": 22,
+      "product": {
+        "id": 4,
+        "product_name": "Cà phê Bạc xỉu",
+        "description": "Cà phê đậm chất Tây Nguyên",
+        "price": 12000,
+        "quantity": 2,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=978283c9-dbb8-4024-8db3-d7f24550686a",
+          "related": []
+        },
+        "categoryId": "6"
+      },
+      "id": 6
+    },
+    {
+      "idUser": 22,
+      "product": {
+        "id": 2,
+        "product_name": "Cà phê Laura",
+        "description": "Cà phê Đông trùng Hạ thảo (Hộp 10 gói) Laura Coffee",
+        "price": 75000,
+        "quantity": 2,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fz4745266129303_475ddb7bcf52f6e34b1739bec8ede878_dbd6bc44303942e1a065dbab7f718e8a_master.webp?alt=media&token=53d89346-8313-4bde-988d-4e3f7f36d08d",
+          "related": []
+        },
+        "categoryId": "6"
+      },
+      "id": 7
+    },
+    {
+      "idUser": 22,
+      "product": {
+        "id": 3,
+        "product_name": "Biến mọi thứ thành tiền",
+        "description": "Biến Mọi Thứ Thành Tiền",
+        "price": 151200,
+        "quantity": 2,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fanh_dai_dien_bien_moi_thu_thanh_tien_ec855091d002462f9e4586c7e0fb8e22.webp?alt=media&token=e21a0c85-a6ee-471b-9e0a-df8a31beace9",
+          "related": []
+        },
+        "categoryId": "8"
+      },
+      "id": 8
+    },
+    {
+      "idUser": "21",
+      "product": {
+        "id": 6,
+        "product_name": "Sách Bách Khoa Lịch Sử Thế Giới",
+        "description": "Cuốn toàn thư Lịch Sử Thế Giới từ Cổ đại đến Hiện đại)",
+        "price": 478500,
+        "quantity": 1,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fbach_khoa_lich_su_the_gioi_-_bia_1-1_11a182a3e40b4dd08e145324f21e11d8_bb88fde1c79b4b008fb8eac7e44d6668.webp?alt=media&token=73a3e36c-9fcf-4985-a7a5-afcf78082a52",
+          "related": []
+        },
+        "categoryId": "8"
+      },
+      "id": 9,
+      "quantity": 1
     }
   ]
 }

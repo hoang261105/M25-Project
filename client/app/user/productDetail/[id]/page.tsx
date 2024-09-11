@@ -7,9 +7,14 @@ import Footer from "@/components/user/Footer";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
-import { Products } from "@/interface/admin";
+import { Carts, Products } from "@/interface/admin";
 import { useParams } from "next/navigation";
 import { getProductById } from "@/services/admin/product.service";
+import {
+  addToCart,
+  getCartProduct,
+  updatedCart,
+} from "@/services/admin/cart.service";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -17,6 +22,8 @@ const formatter = new Intl.NumberFormat("vi-VN", {
 });
 
 export default function page() {
+  let account = JSON.parse(localStorage.getItem("user") || "[]");
+  const cartState = useSelector((state: any) => state.carts.cart);
   const { id } = useParams();
   const productState = useSelector(
     (state: any) => state.products.productDetail
@@ -28,6 +35,52 @@ export default function page() {
       dispatch(getProductById(id));
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (account.id) {
+      dispatch(getCartProduct(account.id));
+    }
+  }, [dispatch, account.id]);
+
+  const addToCarts = (product: Products) => {
+    const existProduct = cartState.find(
+      (item: Carts) => item.product.id === product.id
+    );
+
+    if (existProduct) {
+      // If the product exists, update its quantity
+      const updatedProduct = {
+        ...existProduct,
+        product: {
+          ...existProduct.product,
+          quantity: existProduct.product.quantity + 1, // Increase the quantity
+        },
+      };
+
+      // Dispatch the updated cart with the correct product
+      dispatch(updatedCart(updatedProduct));
+    } else {
+      // If the product doesn't exist, add a new product to the cart
+      const newCart = {
+        idUser: account.id,
+        product: {
+          id: product.id,
+          product_name: product.product_name,
+          description: product.description,
+          price: product.price,
+          quantity: 1, // Set initial quantity to 1
+          image: {
+            origin: product.image.origin,
+            related: product.image.related,
+          },
+          categoryId: product.categoryId,
+        },
+      };
+
+      // Dispatch the new cart object
+      dispatch(addToCart(newCart));
+    }
+  };
   return (
     <div>
       <Header />
@@ -58,7 +111,12 @@ export default function page() {
                     </div>
 
                     <div className="class-button">
-                      <Button variant="primary">Thêm vào giỏ hàng</Button>{" "}
+                      <Button
+                        variant="primary"
+                        onClick={() => addToCarts(productState)}
+                      >
+                        Thêm vào giỏ hàng
+                      </Button>{" "}
                       <Button variant="success">Mua ngay</Button>
                     </div>
                   </div>

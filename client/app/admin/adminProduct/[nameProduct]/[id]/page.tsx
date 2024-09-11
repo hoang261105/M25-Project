@@ -115,7 +115,7 @@ export default function AdminProduct() {
         product_name: inputValue.product_name,
         description: inputValue.description,
         price: Number(inputValue.price),
-        quantity: inputValue.quantity,
+        quantity: Number(inputValue.quantity),
         created_at: format(new Date(), "dd/MM/yyyy HH:mm:ss"),
         updated_at: "",
         image: {
@@ -351,7 +351,7 @@ export default function AdminProduct() {
                 autoFocus
                 onChange={handleEditChange}
                 name="price"
-                value={productEdit?.description || ""}
+                value={productEdit?.price || ""}
               />
               {error.price && (
                 <span style={{ color: "red", fontSize: 14 }}>

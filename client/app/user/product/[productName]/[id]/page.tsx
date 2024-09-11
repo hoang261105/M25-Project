@@ -13,8 +13,13 @@ import {
   sortProduct,
   sortProductPrice,
 } from "@/services/admin/product.service";
-import { Products } from "@/interface/admin";
+import { Carts, Products } from "@/interface/admin";
 import Image from "next/image";
+import {
+  addToCart,
+  getCartProduct,
+  updatedCart,
+} from "@/services/admin/cart.service";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -22,6 +27,8 @@ const formatter = new Intl.NumberFormat("vi-VN", {
 });
 
 export default function page() {
+  let account = JSON.parse(localStorage.getItem("user") || "[]");
+  const cartState = useSelector((state: any) => state.carts.cart);
   const [minPrice, setMinPrice] = useState(""); // Giá trị từ người dùng nhập
   const [maxPrice, setMaxPrice] = useState(""); // Giá trị từ người dùng nhập
   const [filteredProducts, setFilteredProducts] = useState<Products[]>([]); // Lưu trữ sản phẩm đã lọc
@@ -39,6 +46,12 @@ export default function page() {
   useEffect(() => {
     setFilteredProducts(productState); // Ban đầu hiển thị tất cả sản phẩm
   }, [productState]);
+
+  useEffect(() => {
+    if (account.id) {
+      dispatch(getCartProduct(account.id));
+    }
+  }, [dispatch, account.id]);
 
   const handleFilter = () => {
     const min = parseInt(minPrice, 10); // Chuyển đổi chuỗi sang số
@@ -65,6 +78,46 @@ export default function page() {
 
   const handleClick = (id: number) => {
     router.push(`/user/productDetail/${id}`);
+  };
+
+  const addToCarts = (product: Products) => {
+    const existProduct = cartState.find(
+      (item: Carts) => item.product.id === product.id
+    );
+
+    if (existProduct) {
+      // If the product exists, update its quantity
+      const updatedProduct = {
+        ...existProduct,
+        product: {
+          ...existProduct.product,
+          quantity: existProduct.product.quantity + 1, // Increase the quantity
+        },
+      };
+
+      // Dispatch the updated cart with the correct product
+      dispatch(updatedCart(updatedProduct));
+    } else {
+      // If the product doesn't exist, add a new product to the cart
+      const newCart = {
+        idUser: account.id,
+        product: {
+          id: product.id,
+          product_name: product.product_name,
+          description: product.description,
+          price: product.price,
+          quantity: 1, // Set initial quantity to 1
+          image: {
+            origin: product.image.origin,
+            related: product.image.related,
+          },
+          categoryId: product.categoryId,
+        },
+      };
+
+      // Dispatch the new cart object
+      dispatch(addToCart(newCart));
+    }
   };
   return (
     <div>
@@ -167,7 +220,7 @@ export default function page() {
                   />
                 </div>
                 <div>
-                  <p>{product.product_name}</p>
+                  <p className="truncate w-52">{product.product_name}</p>
                   <p className="price">{formatter.format(product.price)}</p>
                 </div>
                 <div style={{ height: 70 }}>
@@ -180,7 +233,9 @@ export default function page() {
                   >
                     Xem chi tiết
                   </Button>{" "}
-                  <Button variant="success">Thêm vào giỏ hàng</Button>
+                  <Button variant="success" onClick={() => addToCarts(product)}>
+                    Thêm vào giỏ hàng
+                  </Button>
                 </div>
               </div>
             ))

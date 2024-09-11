@@ -7,9 +7,14 @@ import { Button, Carousel } from "react-bootstrap";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "@/services/admin/category.service";
-import { Category, Products } from "@/interface/admin";
+import { Carts, Category, Products } from "@/interface/admin";
 import { useRouter } from "next/navigation";
 import { getAllProductAll } from "@/services/admin/product.service";
+import {
+  addToCart,
+  getCartProduct,
+  updatedCart,
+} from "@/services/admin/cart.service";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -17,7 +22,9 @@ const formatter = new Intl.NumberFormat("vi-VN", {
 });
 
 export default function Home() {
+  let account = JSON.parse(localStorage.getItem("user") || "[]");
   const productState = useSelector((state: any) => state.products.product);
+  const cartState = useSelector((state: any) => state.carts.cart);
   console.log(productState);
   const categoryState = useSelector((state: any) => state.categories.category);
   console.log(categoryState);
@@ -28,9 +35,62 @@ export default function Home() {
     dispatch(getAllProductAll());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (account.id) {
+      dispatch(getCartProduct(account.id));
+    }
+  }, [dispatch, account.id]);
+
   const handleClick = (id: number, category: Category) => {
     router.push(`/user/product/${category.category_name}/${id}`);
   };
+
+  console.log(cartState);
+  useEffect(() => {
+    if (account.id) {
+      dispatch(getCartProduct(account.id));
+    }
+  }, [dispatch, account.id]);
+  const addToCarts = (product: Products) => {
+    const existProduct = cartState.find(
+      (item: Carts) => item.product.id === product.id
+    );
+
+    if (existProduct) {
+      // If the product exists, update its quantity
+      const updatedProduct = {
+        ...existProduct,
+        product: {
+          ...existProduct.product,
+          quantity: existProduct.product.quantity + 1, // Increase the quantity
+        },
+      };
+
+      // Dispatch the updated cart with the correct product
+      dispatch(updatedCart(updatedProduct));
+    } else {
+      // If the product doesn't exist, add a new product to the cart
+      const newCart = {
+        idUser: account.id,
+        product: {
+          id: product.id,
+          product_name: product.product_name,
+          description: product.description,
+          price: product.price,
+          quantity: 1, // Set initial quantity to 1
+          image: {
+            origin: product.image.origin,
+            related: product.image.related,
+          },
+          categoryId: product.categoryId,
+        },
+      };
+
+      // Dispatch the new cart object
+      dispatch(addToCart(newCart));
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -182,7 +242,9 @@ export default function Home() {
                 />
               </div>
               <div className="product-info">
-                <p className="product-title">{product.product_name}</p>
+                <p className="product-title truncate w-52">
+                  {product.product_name}
+                </p>
                 <p className="product-price">
                   <span className="discounted-price">
                     {formatter.format(product.price)}
@@ -197,7 +259,9 @@ export default function Home() {
               </div>
               <div className="flex gap-2">
                 <Button variant="primary">Xem chi tiết</Button>{" "}
-                <Button variant="success">Thêm vào giỏ hàng</Button>
+                <Button variant="success" onClick={() => addToCarts(product)}>
+                  Thêm vào giỏ hàng
+                </Button>
               </div>
             </div>
           ))}
