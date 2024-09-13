@@ -15,6 +15,8 @@ import {
   getCartProduct,
   updatedCart,
 } from "@/services/admin/cart.service";
+import Swal from "sweetalert2";
+import { getFavouriteProduct } from "@/services/user/favourite.service";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -22,6 +24,7 @@ const formatter = new Intl.NumberFormat("vi-VN", {
 });
 
 export default function Home() {
+  const favourState = useSelector((state: any) => state.favourite.favour);
   let account = JSON.parse(localStorage.getItem("user") || "[]");
   const productState = useSelector((state: any) => state.products.product);
   const cartState = useSelector((state: any) => state.carts.cart);
@@ -38,6 +41,12 @@ export default function Home() {
   useEffect(() => {
     if (account.id) {
       dispatch(getCartProduct(account.id));
+    }
+  }, [dispatch, account.id]);
+
+  useEffect(() => {
+    if (account.id) {
+      dispatch(getFavouriteProduct(account.id));
     }
   }, [dispatch, account.id]);
 
@@ -68,6 +77,13 @@ export default function Home() {
 
       // Dispatch the updated cart with the correct product
       dispatch(updatedCart(updatedProduct));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Thêm sản phẩm thành công!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else {
       // If the product doesn't exist, add a new product to the cart
       const newCart = {
@@ -88,6 +104,13 @@ export default function Home() {
 
       // Dispatch the new cart object
       dispatch(addToCart(newCart));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Thêm sản phẩm thành công!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 

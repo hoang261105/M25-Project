@@ -12,6 +12,7 @@ import {
 } from "@/services/admin/cart.service";
 import { Carts } from "@/interface/admin";
 import Image from "next/image";
+import { getFavouriteProduct } from "@/services/user/favourite.service";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -35,6 +36,7 @@ export default function Page() {
   useEffect(() => {
     if (id) {
       dispatch(getCartProduct(id));
+      dispatch(getFavouriteProduct(id));
     }
   }, [dispatch, id]);
 
@@ -129,11 +131,11 @@ export default function Page() {
             />
             <span className="font-bold">Sản Phẩm</span>
           </div>
-          <div className="flex gap-8 w-96 justify-between">
-            <span className="font-bold">Đơn Giá</span>
-            <span className="font-bold">Số Lượng</span>
-            <span className="font-bold">Số Tiền</span>
-            <span className="font-bold">Thao Tác</span>
+          <div className="flex gap-8 w-[500px] justify-between text-center">
+            <span className="font-bold w-32">Đơn Giá</span>
+            <span className="font-bold w-32">Số Lượng</span>
+            <span className="font-bold w-32">Số Tiền</span>
+            <span className="font-bold w-32">Thao Tác</span>
           </div>
         </div>
 
@@ -167,13 +169,13 @@ export default function Page() {
                     </div>
                   )}
                 </div>
-                <div className="flex items-center gap-12 justify-center w-96">
-                  <span className="font-bold">
+                <div className="flex items-center gap-12 justify-center w-[500px] text-center">
+                  <span className="font-bold w-32">
                     {cart.product
                       ? formatter.format(cart.product.price)
                       : "N/A"}
                   </span>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 w-32">
                     <button
                       className="px-2 py-1 bg-gray-200"
                       onClick={() =>
@@ -199,7 +201,7 @@ export default function Page() {
                       +
                     </button>
                   </div>
-                  <span className="font-bold">
+                  <span className="font-bold w-32">
                     {cart.product
                       ? formatter.format(
                           cart.product.price * cart.product.quantity
@@ -207,7 +209,7 @@ export default function Page() {
                       : "N/A"}
                   </span>
                   <button
-                    className="text-red-500"
+                    className="text-red-500 w-32"
                     onClick={() => handleDelete(cart.id)}
                   >
                     Xóa

@@ -1,5 +1,7 @@
 "use client";
 import { getCartProduct } from "@/services/admin/cart.service";
+import { getFavouriteProduct } from "@/services/user/favourite.service";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,13 +13,22 @@ export default function Header() {
   );
   const router = useRouter();
   const cartState = useSelector((state: any) => state.carts.cart);
+  const favourState = useSelector((state: any) => state.favourite.favour);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCartProduct());
   }, []);
+
+  useEffect(() => {
+    dispatch(getFavouriteProduct());
+  }, [dispatch]);
   const handleClick = (id: number) => {
     router.push(`/user/carts/${id}`);
+  };
+
+  const handleClicks = (id: number) => {
+    router.push(`/user/favourite/${id}`);
   };
   const handleLogOut = () => {
     Swal.fire({
@@ -69,23 +80,22 @@ export default function Header() {
             <a href="/user/home" className="nav-item">
               Trang chủ
             </a>
-            <a href="" className="nav-item">
-              Yêu thích
-            </a>
           </nav>
           <div id="loginOut" className="flex gap-3 text-lg">
             {account ? (
               <div className="flex items-center gap-4">
                 <a href={"/user/profile"}>
-                  <img
+                  <Image
                     src={account.avatar}
                     alt=""
                     className="w-9 h-9"
                     style={{ borderRadius: "50%" }}
+                    width={100}
+                    height={100}
                   />
                 </a>
                 <div className="profile">
-                  <a href={"/user/profile"}>{account.fullName}</a>
+                  <a href={"/user/profile"}>{account.username}</a>
                 </div>
                 <button
                   className="cart"
@@ -96,6 +106,13 @@ export default function Header() {
                     style={{ fontSize: 15 }}
                   ></i>{" "}
                   <div className="notification">{cartState.length}</div>
+                </button>
+                <button
+                  className="cart"
+                  onClick={() => handleClicks(account.id)}
+                >
+                  <i className="fa-regular fa-heart"></i>{" "}
+                  <div className="notification">{favourState.length}</div>
                 </button>
                 <button onClick={handleLogOut}>
                   <i className="fa-solid fa-right-from-bracket"></i>

@@ -285,14 +285,17 @@
       "user_id": 7236,
       "username": "lanh2005",
       "fullName": "Lan Anh",
-      "email": "lanh2005@gmail.com",
+      "email": "lananh2005@gmail.com",
       "password": "lanh2005",
       "status": true,
       "role": false,
-      "avatar": "https://scontent.fhan18-1.fna.fbcdn.net/v/t1.30497-1/453178253_471506465671661_2781666950760530985_n.png?stp=dst-png_s200x200&_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_ohc=VVXDQ2ftWTsQ7kNvgEsTadt&_nc_ht=scontent.fhan18-1.fna&_nc_gid=AXp3jmeNWjNNYIBHePTAf1C&oh=00_AYDz8-sNB58RG9XND9CXST7E2TwhmKQT842F2Wnbd1CajQ&oe=6701DFBA",
-      "phone": "",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2F459035921_1026859672266206_7003725461299775901_n.jpg?alt=media&token=b0aafbc9-4f22-4837-9b44-5054b80f25b5",
+      "phone": "0968754643",
       "created_at": "08-09-2024 18:23:15",
-      "updated_at": ""
+      "updated_at": "",
+      "image": "https://scontent.fhan18-1.fna.fbcdn.net/v/t1.30497-1/453178253_471506465671661_2781666950760530985_n.png?stp=dst-png_s200x200&_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_ohc=VVXDQ2ftWTsQ7kNvgEsTadt&_nc_ht=scontent.fhan18-1.fna&_nc_gid=AXp3jmeNWjNNYIBHePTAf1C&oh=00_AYDz8-sNB58RG9XND9CXST7E2TwhmKQT842F2Wnbd1CajQ&oe=6701DFBA",
+      "name": "Lan Anh",
+      "address": "Tam Nông, Phú Thọ"
     },
     {
       "user_id": 936,
@@ -415,55 +418,38 @@
     {
       "idUser": "21",
       "product": {
+        "id": 5,
+        "product_name": "Máy tính Asus Vivobook",
+        "description": "Máy tính Asus Vivobook bản 16inch",
+        "price": 15000000,
+        "quantity": 2,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2F10056805-laptop-asus-vivobook15-i3-1215u-x1504za0nj582w-1.jpg?alt=media&token=abe84f31-256f-4b23-b72e-eed41d3526d7",
+          "related": []
+        },
+        "categoryId": "5"
+      },
+      "id": 9,
+      "quantity": 1
+    },
+    {
+      "idUser": 21,
+      "product": {
         "id": 4,
         "product_name": "Cà phê Bạc xỉu",
         "description": "Cà phê đậm chất Tây Nguyên",
         "price": 12000,
-        "quantity": 2,
-        "image": {
-          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=978283c9-dbb8-4024-8db3-d7f24550686a",
-          "related": []
-        },
-        "categoryId": "6"
-      },
-      "id": 3,
-      "quantity": 12
-    },
-    {
-      "idUser": "21",
-      "product": {
-        "id": 2,
-        "product_name": "Cà phê Laura",
-        "description": "Cà phê Đông trùng Hạ thảo (Hộp 10 gói) Laura Coffee",
-        "price": 75000,
         "quantity": 1,
         "image": {
-          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fz4745266129303_475ddb7bcf52f6e34b1739bec8ede878_dbd6bc44303942e1a065dbab7f718e8a_master.webp?alt=media&token=53d89346-8313-4bde-988d-4e3f7f36d08d",
-          "related": []
-        },
-        "categoryId": "6"
-      },
-      "id": 4,
-      "quantity": 2
-    },
-    {
-      "idUser": 22,
-      "product": {
-        "id": 4,
-        "product_name": "Cà phê Bạc xỉu",
-        "description": "Cà phê đậm chất Tây Nguyên",
-        "price": 12000,
-        "quantity": 2,
-        "image": {
           "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=978283c9-dbb8-4024-8db3-d7f24550686a",
           "related": []
         },
         "categoryId": "6"
       },
-      "id": 6
+      "id": 10
     },
     {
-      "idUser": 22,
+      "idUser": 21,
       "product": {
         "id": 2,
         "product_name": "Cà phê Laura",
@@ -476,26 +462,10 @@
         },
         "categoryId": "6"
       },
-      "id": 7
+      "id": 11
     },
     {
-      "idUser": 22,
-      "product": {
-        "id": 3,
-        "product_name": "Biến mọi thứ thành tiền",
-        "description": "Biến Mọi Thứ Thành Tiền",
-        "price": 151200,
-        "quantity": 2,
-        "image": {
-          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fanh_dai_dien_bien_moi_thu_thanh_tien_ec855091d002462f9e4586c7e0fb8e22.webp?alt=media&token=e21a0c85-a6ee-471b-9e0a-df8a31beace9",
-          "related": []
-        },
-        "categoryId": "8"
-      },
-      "id": 8
-    },
-    {
-      "idUser": "21",
+      "idUser": 21,
       "product": {
         "id": 6,
         "product_name": "Sách Bách Khoa Lịch Sử Thế Giới",
@@ -508,8 +478,90 @@
         },
         "categoryId": "8"
       },
-      "id": 9,
+      "id": 13
+    },
+    {
+      "idUser": "22",
+      "product": {
+        "id": 2,
+        "product_name": "Cà phê Laura",
+        "description": "Cà phê Đông trùng Hạ thảo (Hộp 10 gói) Laura Coffee",
+        "price": 75000,
+        "quantity": 1,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fz4745266129303_475ddb7bcf52f6e34b1739bec8ede878_dbd6bc44303942e1a065dbab7f718e8a_master.webp?alt=media&token=53d89346-8313-4bde-988d-4e3f7f36d08d",
+          "related": []
+        },
+        "categoryId": "6"
+      },
+      "id": 14,
       "quantity": 1
+    }
+  ],
+  "favourites": [
+    {
+      "idUser": 21,
+      "product": {
+        "id": 2,
+        "product_name": "Cà phê Laura",
+        "description": "Cà phê Đông trùng Hạ thảo (Hộp 10 gói) Laura Coffee",
+        "price": 75000,
+        "quantity": 32,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fz4745266129303_475ddb7bcf52f6e34b1739bec8ede878_dbd6bc44303942e1a065dbab7f718e8a_master.webp?alt=media&token=53d89346-8313-4bde-988d-4e3f7f36d08d",
+          "related": []
+        },
+        "categoryId": "6"
+      },
+      "id": 1
+    },
+    {
+      "idUser": 21,
+      "product": {
+        "id": 4,
+        "product_name": "Cà phê Bạc xỉu",
+        "description": "Cà phê đậm chất Tây Nguyên",
+        "price": 12000,
+        "quantity": 20,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fca-phe-Viet-Nam.jpg?alt=media&token=978283c9-dbb8-4024-8db3-d7f24550686a",
+          "related": []
+        },
+        "categoryId": "6"
+      },
+      "id": 2
+    },
+    {
+      "idUser": 21,
+      "product": {
+        "id": 3,
+        "product_name": "Biến mọi thứ thành tiền",
+        "description": "Biến Mọi Thứ Thành Tiền",
+        "price": 151200,
+        "quantity": 13,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fanh_dai_dien_bien_moi_thu_thanh_tien_ec855091d002462f9e4586c7e0fb8e22.webp?alt=media&token=e21a0c85-a6ee-471b-9e0a-df8a31beace9",
+          "related": []
+        },
+        "categoryId": "8"
+      },
+      "id": 3
+    },
+    {
+      "idUser": 22,
+      "product": {
+        "id": 3,
+        "product_name": "Biến mọi thứ thành tiền",
+        "description": "Biến Mọi Thứ Thành Tiền",
+        "price": 151200,
+        "quantity": 13,
+        "image": {
+          "origin": "https://firebasestorage.googleapis.com/v0/b/project-m25-338d2.appspot.com/o/images%2Fanh_dai_dien_bien_moi_thu_thanh_tien_ec855091d002462f9e4586c7e0fb8e22.webp?alt=media&token=e21a0c85-a6ee-471b-9e0a-df8a31beace9",
+          "related": []
+        },
+        "categoryId": "8"
+      },
+      "id": 4
     }
   ]
 }

@@ -15,6 +15,8 @@ import {
   getCartProduct,
   updatedCart,
 } from "@/services/admin/cart.service";
+import Swal from "sweetalert2";
+import { getFavouriteProduct } from "@/services/user/favourite.service";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -39,6 +41,7 @@ export default function page() {
   useEffect(() => {
     if (account.id) {
       dispatch(getCartProduct(account.id));
+      dispatch(getFavouriteProduct(account.id));
     }
   }, [dispatch, account.id]);
 
@@ -59,6 +62,13 @@ export default function page() {
 
       // Dispatch the updated cart with the correct product
       dispatch(updatedCart(updatedProduct));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Thêm sản phẩm thành công!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else {
       // If the product doesn't exist, add a new product to the cart
       const newCart = {
@@ -79,6 +89,13 @@ export default function page() {
 
       // Dispatch the new cart object
       dispatch(addToCart(newCart));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Thêm sản phẩm thành công!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
   return (

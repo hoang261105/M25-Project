@@ -13,13 +13,19 @@ import {
   sortProduct,
   sortProductPrice,
 } from "@/services/admin/product.service";
-import { Carts, Products } from "@/interface/admin";
+import { Carts, Favourite, Products } from "@/interface/admin";
 import Image from "next/image";
 import {
   addToCart,
   getCartProduct,
   updatedCart,
 } from "@/services/admin/cart.service";
+import Swal from "sweetalert2";
+import {
+  addFavourProduct,
+  deleteFavourProdcuct,
+  getFavouriteProduct,
+} from "@/services/user/favourite.service";
 
 const formatter = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -29,6 +35,7 @@ const formatter = new Intl.NumberFormat("vi-VN", {
 export default function page() {
   let account = JSON.parse(localStorage.getItem("user") || "[]");
   const cartState = useSelector((state: any) => state.carts.cart);
+  const favourState = useSelector((state: any) => state.favourite.favour);
   const [minPrice, setMinPrice] = useState(""); // Giá trị từ người dùng nhập
   const [maxPrice, setMaxPrice] = useState(""); // Giá trị từ người dùng nhập
   const [filteredProducts, setFilteredProducts] = useState<Products[]>([]); // Lưu trữ sản phẩm đã lọc
@@ -50,6 +57,7 @@ export default function page() {
   useEffect(() => {
     if (account.id) {
       dispatch(getCartProduct(account.id));
+      dispatch(getFavouriteProduct(account.id));
     }
   }, [dispatch, account.id]);
 
@@ -97,6 +105,13 @@ export default function page() {
 
       // Dispatch the updated cart with the correct product
       dispatch(updatedCart(updatedProduct));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Thêm sản phẩm thành công!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else {
       // If the product doesn't exist, add a new product to the cart
       const newCart = {
@@ -117,8 +132,52 @@ export default function page() {
 
       // Dispatch the new cart object
       dispatch(addToCart(newCart));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Yêu thích sản phẩm thành công!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
+
+  const addFavourite = async (product: Products) => {
+    const existProduct = favourState.find(
+      (item: Favourite) => item.product.id === product.id
+    );
+
+    if (existProduct) {
+      await dispatch(deleteFavourProdcuct(existProduct.id));
+    } else {
+      // If the product doesn't exist, add a new product to the cart
+      const newCart = {
+        idUser: account.id,
+        product: {
+          id: product.id,
+          product_name: product.product_name,
+          description: product.description,
+          price: product.price,
+          quantity: product.quantity, // Set initial quantity to 1
+          image: {
+            origin: product.image.origin,
+            related: product.image.related,
+          },
+          categoryId: product.categoryId,
+        },
+      };
+
+      // Dispatch the new cart object
+      dispatch(addFavourProduct(newCart));
+    }
+  };
+
+  const isFavorited = (productId: number) => {
+    return favourState.some(
+      (favour: Favourite) => favour.product.id === productId
+    );
+  };
+
   return (
     <div>
       <Header />
@@ -208,9 +267,17 @@ export default function page() {
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product: Products) => (
               <div className="product-card" key={product.id}>
-                <span className="favorite-heart">
-                  <i className="fa-regular fa-heart"></i>
-                </span>
+                <button
+                  className="favorite-heart"
+                  onClick={() => addFavourite(product)}
+                >
+                  <i
+                    className="fa-solid fa-heart"
+                    style={{
+                      color: isFavorited(product.id) ? "red" : "black",
+                    }}
+                  ></i>
+                </button>
                 <div className="image">
                   <Image
                     src={product.image.origin}

@@ -3,6 +3,7 @@ import userReducer from "./reducers/admin/userReducer"; // Đảm bảo đườn
 import categoryReducer from "./reducers/admin/categoryReducer";
 import productReducer from "./reducers/admin/productReducer";
 import cartReducer from "./reducers/user/cartReducer";
+import favourReducer from "./reducers/user/favourReducer";
 
 // Khởi tạo store với reducer
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
     categories: categoryReducer,
     products: productReducer,
     carts: cartReducer,
+    favourite: favourReducer,
   },
 });
 

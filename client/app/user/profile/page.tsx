@@ -4,6 +4,13 @@ import Header from "@/components/user/Header";
 import "@/styles/home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartProduct } from "@/services/admin/cart.service";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "@/config/firebase";
+import axios from "axios";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
+import { getFavouriteProduct } from "@/services/user/favourite.service";
 
 export default function Page() {
   let account = JSON.parse(localStorage.getItem("user") || "[]");
@@ -16,7 +23,10 @@ export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [editType, setEditType] = useState<"email" | "phone" | null>(null);
   const [email, setEmail] = useState<string>(account.email);
-  const [phone, setPhone] = useState<string>("");
+  const [phone, setPhone] = useState<string>(account.phone || "");
+  const router = useRouter();
+  const [name, setName] = useState<string>(account.fullName || ""); // State for name
+  const [address, setAddress] = useState<string>(account.address || ""); // State for address
 
   const openProfileModal = () => {
     setIsProfileModalOpen(true);
@@ -28,6 +38,7 @@ export default function Page() {
   useEffect(() => {
     if (account.id) {
       dispatch(getCartProduct(account.id));
+      dispatch(getFavouriteProduct(account.id));
     }
   }, [dispatch, account.id]);
 
@@ -40,10 +51,81 @@ export default function Page() {
     setIsModalOpen(false);
   };
 
-  const handleSave = () => {
-    // Handle the save logic here
-    console.log(`Saving ${editType}:`, editType === "email" ? email : phone);
-    closeModal();
+  const handleImageChange = (e: any) => {
+    let image: any = e.target.files[0];
+    const imageRef = ref(storage, `images/${image.name}`);
+    uploadBytes(imageRef, image).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImage(url);
+      });
+    });
+  };
+
+  const handleSaveImage = async () => {
+    account.avatar = image; // Update the account object with the new image URL
+
+    // Save the updated account in localStorage
+    localStorage.setItem("user", JSON.stringify(account));
+
+    // Update the image in the database (db.json)
+    await axios.put(`http://localhost:8000/users/${account.id}`, {
+      ...account, // Ensure other fields stay intact
+      avatar: image, // Only update the avatar field
+    });
+
+    closeProfileModal(); // Close the modal after saving
+  };
+
+  // Function to handle saving email or phone
+  const handleSave = async () => {
+    if (editType === "email") {
+      account.email = email; // Update email in the account object
+    } else if (editType === "phone") {
+      account.phone = phone; // Update phone in the account object
+    }
+
+    // Save the updated account in localStorage
+    localStorage.setItem("user", JSON.stringify(account));
+
+    // Update the email or phone in the database (db.json)
+    await axios.put(`http://localhost:8000/users/${account.id}`, {
+      ...account, // Ensure other fields stay intact
+      email: account.email, // Update email
+      phone: account.phone, // Update phone
+    });
+
+    closeModal(); // Close the modal after saving
+  };
+
+  // Function to handle saving profile information (Name, Email, Phone, Address)
+  const handleSaveProfile = async () => {
+    // Update local account object with new name, address, email, and phone
+    account.fullName = name;
+    account.address = address;
+    account.email = email;
+    account.phone = phone;
+
+    // Save the updated account in localStorage
+    localStorage.setItem("user", JSON.stringify(account));
+
+    // Update the account in the database (db.json)
+    await axios.put(`http://localhost:8000/users/${account.id}`, {
+      ...account, // Ensure other fields stay intact
+      name: account.fullName, // Update name
+      address: account.address, // Update address
+      email: account.email, // Update email
+      phone: account.phone, // Update phone
+    });
+
+    // Close the modal or show a success message after saving
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Cập nhật thành công",
+      showConfirmButton: false,
+      timer: 1000,
+    });
+    router.push("/user/home");
   };
 
   return (
@@ -60,13 +142,15 @@ export default function Page() {
             {/* Sidebar */}
             <div className="w-1/4 bg-white shadow-lg rounded-lg p-6">
               <div className="flex items-center gap-4 mb-6">
-                <img
+                <Image
                   src={account.avatar}
                   alt="Avatar"
                   className="w-16 h-16 rounded-full object-cover"
+                  width={100}
+                  height={100}
                 />
                 <div>
-                  <p className="font-semibold">{account.fullName}</p>
+                  <p className="font-semibold">{account.username}</p>
                   <button
                     className="text-sm text-blue-500"
                     onClick={openProfileModal}
@@ -114,6 +198,9 @@ export default function Page() {
                     <label className="block text-gray-700 mb-2">Tên</label>
                     <input
                       type="text"
+                      name="fullName"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full p-2 border border-gray-300 rounded-lg"
                     />
                   </div>
@@ -139,7 +226,7 @@ export default function Page() {
                   {/* Phone */}
                   <div className="col-span-2">
                     <label className="block text-gray-700 mb-2">
-                      Số điện thoại
+                      Số điện thoại: {account.phone}
                     </label>
                     <button
                       type="button"
@@ -154,6 +241,9 @@ export default function Page() {
                     <label className="block text-gray-700 mb-2">Địa chỉ</label>
                     <input
                       type="text"
+                      name="address"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
                       className="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 "
                     />
                   </div>
@@ -161,8 +251,9 @@ export default function Page() {
                   {/* Save Button */}
                   <div className="col-span-2 text-right">
                     <button
-                      type="submit"
+                      type="button"
                       className="bg-red-500 text-white px-6 py-2 rounded-lg"
+                      onClick={handleSaveProfile}
                     >
                       Lưu
                     </button>
@@ -192,7 +283,7 @@ export default function Page() {
                 {editType === "email" ? "Email Mới" : "Số Điện Thoại Mới"}
               </label>
               <input
-                type={editType === "email" ? "email" : "tel"}
+                type={editType === "email" ? "email" : "phone"}
                 value={editType === "email" ? email : phone}
                 onChange={(e) =>
                   editType === "email"
@@ -231,18 +322,28 @@ export default function Page() {
           <div className="bg-white rounded-lg shadow-lg p-6 relative z-10">
             <h2 className="text-xl font-semibold mb-4">Sửa Hình ảnh</h2>
             <div className="mb-4">
+              <label className="block text-gray-700 mb-2">
+                Hình ảnh hiện tại
+              </label>
+              <Image
+                src={image || account.avatar} // Hiển thị hình ảnh hiện tại
+                alt="Avatar"
+                width={100}
+                height={100}
+                className="w-24 h-24 rounded-full object-cover mb-4"
+              />
               <label className="block text-gray-700 mb-2">Hình ảnh</label>
               <input
                 type="file"
                 className="w-full p-2 border border-gray-300 rounded-lg"
+                name="avatar"
+                onChange={handleImageChange}
               />
             </div>
             <div className="flex gap-4">
               <button
                 type="button"
-                onClick={() => {
-                  closeProfileModal();
-                }}
+                onClick={() => handleSaveImage()}
                 className="bg-red-500 text-white px-4 py-2 rounded-lg"
               >
                 Lưu

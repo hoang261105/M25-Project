@@ -91,13 +91,6 @@ export default function AdminUser() {
       error.username = "";
     }
 
-    if (!inputValue.fullName) {
-      error.fullName = "Họ tên không được để trống";
-      valid = false;
-    } else {
-      error.fullName = "";
-    }
-
     if (!inputValue.email) {
       error.email = "Email không được để trống";
       valid = false;
@@ -135,12 +128,11 @@ export default function AdminUser() {
     if (valid) {
       const newUser = {
         user_id: Math.ceil(Math.random() * 10000),
+        fullName: "",
         username: inputValue.username,
-        fullName: inputValue.fullName,
         email: inputValue.email,
         password: inputValue.password,
         status: true,
-        cart: [],
         role: false,
         address: "",
         avatar:
@@ -263,21 +255,6 @@ export default function AdminUser() {
               {error.username && (
                 <span style={{ color: "red", fontSize: 14 }}>
                   {error.username}
-                </span>
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Họ và tên</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Nhập họ và tên"
-                autoFocus
-                onChange={handleChange}
-                name="fullName"
-              />
-              {error.fullName && (
-                <span style={{ color: "red", fontSize: 14 }}>
-                  {error.fullName}
                 </span>
               )}
             </Form.Group>
